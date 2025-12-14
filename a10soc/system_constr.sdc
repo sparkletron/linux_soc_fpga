@@ -1,6 +1,12 @@
 
 create_clock -period "10.000 ns"  -name sys_clk_100mhz      [get_ports {sys_clk}]
 
+derive_pll_clocks
+derive_clock_uncertainty
+
+set_input_delay 0.000 -clock {rx_clk_virtual_250mhz} [get_ports {rx_clk_in}]
+
+
 #taken from blade rf :)
 create_generated_clock -name spi_clk_reg -source [get_ports {sys_clk}] -divide_by 10 [get_registers {inst_system_ps_wrapper|sys_spi|sys_spi|SCLK_reg}]
 create_generated_clock -name spi_clk_10mhz -source [get_registers -no_duplicates {inst_system_ps_wrapper|sys_spi|sys_spi|SCLK_reg}] [get_ports {spi_clk}]

@@ -13,6 +13,73 @@ filesets:
       - AFRL:device:axi_lite_uart_lite:1.0.0
       - AFRL:device:axi_lite_gpio:1.0.0
       - AFRL:bus:axi_lite_otm:1.0.0
+
+  zed:
+    files:
+      - zed/system_constr.xdc : {file_type : xdc}
+      - zed/system_wrapper.v : {file_type : verilogSource}
+      - zed/system_gen.tcl : {file_type : tclSource}
+    depend:
+      - AFRL:utility:digilent_zed_board_base:1.0.0
+      - AFRL:utility:vivado_board_support_packages
+      - AD:common:ad_iobuf:1.0.0
+
+  zed_bootgen:
+    depend:
+      - AFRL:utility:digilent_zed_boot_gen:1.0.0
+
+  zc706:
+    files:
+      - zc706/system_constr.xdc : {file_type : xdc}
+      - zc706/system_wrapper.v : {file_type : verilogSource}
+      - zc706/system_gen.tcl : {file_type : tclSource}
+    depend:
+      - AFRL:utility:xilinx_zc706_board_base:1.0.0
+      - AFRL:utility:vivado_board_support_packages
+      - AD:common:ad_iobuf:1.0.0
+
+  zc706_bootgen:
+    depend:
+      - AFRL:utility:xilinx_zc706_boot_gen:1.0.0
+
+  zc702:
+    files:
+      - zc702/system_constr.xdc : {file_type : xdc}
+      - zc702/system_wrapper.v : {file_type : verilogSource}
+      - zc702/system_gen.tcl : {file_type : tclSource}
+    depend:
+      - AFRL:utility:xilinx_zc702_board_base:1.0.0
+      - AFRL:utility:vivado_board_support_packages
+      - AD:common:ad_iobuf:1.0.0
+
+  zc702_bootgen:
+    depend:
+      - AFRL:utility:xilinx_zc702_boot_gen:1.0.0
+      
+  hanpilot:
+    files:
+      - hanpilot/system_constr.sdc : {file_type : SDC}
+      - hanpilot/system_wrapper.v : {file_type : verilogSource}
+      - hanpilot/system_gen.tcl : {file_type : tclSource}
+    depend:
+      - AFRL:utility:terasic_hanpilot_board_base:1.0.0
+
+  hanpilot_bootgen:
+    depend:
+      - AFRL:utility:terasic_hanpilot_boot_gen:1.0.0
+
+  a10soc:
+    files:
+      - a10soc/system_constr.sdc : {file_type : SDC}
+      - a10soc/system_wrapper.v : {file_type : verilogSource}
+      - a10soc/system_gen.tcl : {file_type : tclSource}
+    depend:
+      - AFRL:utility:intel_a10soc_board_base:1.0.0
+
+  a10soc_bootgen:
+    depend:
+      - AFRL:utility:intel_a10soc_boot_gen:1.0.0
+
       
   zrf8_zu28dr:
     files:
