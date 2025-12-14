@@ -6,7 +6,8 @@ description: AFRL base for Linux
 filesets:
   veronica_common:
     files:
-      - common/system_ps_axi_perf_wrapper.v         : {file_type : verilogSource}
+      - veronica_common/system_ps_axi_perf_wrapper.v    : {file_type : verilogSource}
+      - veronica_common/system_ps_wrapper.v             : {file_type : verilogSource}
     depend:
       - AFRL:device:axi_lite_spi_master:1.0.0
       - AFRL:device:axi_lite_uart_lite:1.0.0
@@ -139,7 +140,19 @@ filesets:
   VC707_bootgen:
     depend:
       - AFRL:utility:xilinx_veronica_vc707_boot_gen:1.0.0
+      
+  datastormdaq:
+    files:
+      - datastormdaq/system_constr.sdc : {file_type : SDC}
+      - datastormdaq/system_wrapper.v : {file_type : verilogSource}
+      - datastormdaq/system_gen.tcl : {file_type : tclSource}
+    depend:
+      - AFRL:utility:trenz_datastormdaq_board_base:1.0.0
 
+  datastormdaq_bootgen:
+    depend:
+      - AFRL:utility:trenz_datastormdaq_boot_gen:1.0.0
+      
   dep:
     depend:
       - AFRL:utility:helper:1.0.0
@@ -300,3 +313,19 @@ targets:
     <<: *vc707_riscv_veronica
     description: Build for vc707 development board with Linux Veronica RISCV with bootgen for uboot.
     filesets_append : [VC707_bootgen]
+    
+  datastormdaq: &datastormdaq
+    <<: *default
+    default_tool: quartus
+    description: datastormdaq target.
+    filesets_append : ["tool_quartus ? (datastormdaq)"]
+    tools:
+      quartus:
+        family: Cyclone V
+        device: 5CSEMA5F31C8
+
+  datastormdaq_bootgen:
+    <<: *datastormdaq
+    description: Cyclone V build with BOOTFS file generation.
+    filesets_append : [datastormdaq_bootgen]
+
