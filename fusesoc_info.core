@@ -395,4 +395,52 @@ targets:
     <<: *datastormdaq
     description: Cyclone V build with BOOTFS file generation.
     filesets_append : [datastormdaq_bootgen]
+    
+  zed: &zed
+    <<: *default
+    default_tool: vivado
+    description: zedboard target.
+    filesets_append : ["tool_vivado ? (zed)"]
+    tools:
+      vivado:
+        source_mgmt_mode: DisplayOnly
+        board_part: avnet.com:zedboard:1.4
+        part: xc7z020clg484-1
+
+  zed_bootgen:
+    <<: *zed
+    description: zed build with boot.bin output in BOOTFS folder.
+    filesets_append : [zed_bootgen]
+
+  zc706: &zc706
+    <<: *default
+    default_tool: vivado
+    description: zc706 target.
+    filesets_append : ["tool_vivado ? (zc706)"]
+    tools:
+      vivado:
+        source_mgmt_mode: DisplayOnly
+        board_part: xilinx.com:zc706:part0:1.4
+        part: xc7z045ffg900-2
+
+  zc706_bootgen:
+    <<: *zc706
+    description: zc706 build with boot.bin output in BOOTFS folder.
+    filesets_append : [zc706_bootgen]
+
+  zc702: &zc702
+    <<: *default
+    default_tool: vivado
+    description: zc702 target.
+    filesets_append : ["tool_vivado ? (zc702)"]
+    tools:
+      vivado:
+        source_mgmt_mode: DisplayOnly
+        board_part: xilinx.com:zc702:part0:1.4
+        part: xc7z020clg484-1
+
+  zc702_bootgen:
+    <<: *zc702
+    description: zc702 build with boot.bin output in BOOTFS folder.
+    filesets_append : [zc702_bootgen]
 
